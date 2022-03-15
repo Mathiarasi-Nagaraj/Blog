@@ -7,7 +7,7 @@ export default function Write() {
     const [desc, setdesc] = useState("")
     const [Category, setcat] = useState("General")
     const [file, setfile] = useState(null)
-    const catogorey = ['Food', 'Life Style', 'Fashion', 'Travel']
+    const catogorey = ['Food', 'Life Style', 'Fashion', 'Travel','Business']
     const { user } = useContext(Context);
     const handelform = async (e) => {
         e.preventDefault();
@@ -41,8 +41,8 @@ export default function Write() {
     }
     return (
 
-        <>
-            <form className='flex justify-center' onSubmit={(e) => handelform(e)}>
+       <div className=''>
+            <form className='flex justify-center ' onSubmit={(e) => handelform(e)}>
                 <div className='m-10  w-3/4 '>
                     <div className='mb-6'>
 
@@ -109,8 +109,8 @@ export default function Write() {
                     <textarea id="message"
                         autoFocus={true}
                         onChange={(e) => setdesc(e.target.value)}
-
-                        row="10" className="block p-2.5 w-full text-lg row-span-6
+                         rows="10"
+                         className="block p-2.5 w-full text-lg 
  text-gray-900 bg-gray-50 rounded-lg border-none outline-none 
  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 
  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your story...."></textarea>
@@ -126,7 +126,7 @@ export default function Write() {
                 </div>
 
             </form>
-        </>
+      </div>
 
     )
 }

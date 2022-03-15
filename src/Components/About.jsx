@@ -22,7 +22,7 @@ export default function About() {
             </div>
        <Testimonial></Testimonial>
        <FAQ></FAQ>
-<Footer></Footer>
+
     </div>
   )
 }

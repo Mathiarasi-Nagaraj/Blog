@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div> <footer className=" flex justify-center p-5 text-center bg-gray-900 text-white" id="footer">
+    <div className='absolute w-full bottom-0'> <footer className=" flex justify-center p-5 text-center bg-gray-900 text-white  w-full" id="footer">
    
      
     <div className="text-center  p-3 text-xl" style={{backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
