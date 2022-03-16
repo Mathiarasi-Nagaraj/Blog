@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from "react"
 
 import axios from "axios";
+import { axiosInstance } from '../config';
 export default function Register() {
 
   const [username, setusername] = useState("");
@@ -13,7 +14,7 @@ export default function Register() {
     e.preventDefault();
     seterror(false)
     try{
-   const response = await axios.post("/user/register",{username,email,password});
+   const response = await axiosInstance.post("/user/register",{username,email,password});
    response.data && window.location.replace("/login");
    }catch(err)
    {

@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useContext } from "react";
 import axios from "axios";
 import { Context } from "../context/Context"
+import { axiosInstance } from '../config';
 export default function Write() {
     const [title, settitle] = useState("")
     const [desc, setdesc] = useState("")
@@ -25,14 +26,14 @@ export default function Write() {
             newpost.photo = filename;
             try {
 
-                await axios.post("/upload", data)
+                await axiosInstance.post("/upload", data)
 
             } catch (err) {
                 console.log(err);
             }
         }
         try {
-            const res = await axios.post("/post", newpost);
+            const res = await axiosInstance.post("/post", newpost);
             console.log(res);
             window.location.replace("/")
         } catch (err) {
@@ -43,19 +44,19 @@ export default function Write() {
 
        <div className=''>
             <form className='flex justify-center ' onSubmit={(e) => handelform(e)}>
-                <div className='m-10  w-3/4 '>
+                <div className='w-3/4 m-10 '>
                     <div className='mb-6'>
 
                         <label className="block text-lg font-medium text-gray-700">Blog Cover photo</label>
                         
 
-                            {file ?<div className="mt-1 flex justify-center  border-2 border-gray-300 border-solid rounded-md"><img
-                                className="w-full h-44 object-cover p-2 rounded-md"
+                            {file ?<div className="flex justify-center mt-1 border-2 border-gray-300 border-solid rounded-md"><img
+                                className="object-cover w-full p-2 rounded-md h-44"
                                 src={URL.createObjectURL(file)}
                                 alt=""
-                            /> </div>: <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-solid rounded-md"><div className="space-y-1 text-center">
+                            /> </div>: <div className="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-solid rounded-md"><div className="space-y-1 text-center">
                                 <svg
-                                    className="mx-auto h-12 w-12 text-gray-400"
+                                    className="w-12 h-12 mx-auto text-gray-400"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 48 48"
@@ -71,7 +72,7 @@ export default function Write() {
                                 <div className="flex text-sm text-gray-600">
                                     <label
                                         htmlFor="file-upload"
-                                        className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                                        className="relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                                     >
                                         <p className='text-center align-middle'>Upload a file</p>
                                         <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={(e) => setfile(e.target.files[0])} />
@@ -85,7 +86,7 @@ export default function Write() {
 
 
                     <div className="grid xl:grid-cols-2 xl:gap-6">
-                        <div className="relative z-0 mb-6 w-full group">
+                        <div className="relative z-0 w-full mb-6 group">
                             <input type="text" name="floating_first_name"
                                 id="floating_first_name"
                                 autoFocus={true}
@@ -94,14 +95,14 @@ export default function Write() {
                             <label for="floating_first_name" className="absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Blog Title</label>
                         </div>
                         <div className="relative">
-                            <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" onChange={(e)=>setcat(e.target.value)}>
+                            <select className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" onChange={(e)=>setcat(e.target.value)}>
                                 {catogorey.map((cat) =>
                                 (
                                     <option>{cat}</option>
                                 ))}
                             </select>
-                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                            <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+                                <svg className="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
                             </div>
                         </div>
                     </div>
@@ -117,7 +118,7 @@ export default function Write() {
                     <div className="px-4 py-3 text-right sm:px-6">
                         <button
                             type="submit"
-                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="inline-flex justify-center px-4 py-2 text-lg font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                             Publish
                         </button>

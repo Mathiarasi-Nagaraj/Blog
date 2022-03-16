@@ -17,6 +17,7 @@ import { Context } from "./context/Context";
 import Home from './Pages/Home';
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import UserSetting from "./Pages/Usersetting";
 
 function App() {
   const { user } = useContext(Context);
@@ -31,6 +32,7 @@ function App() {
       <Route path="/create" element={user?<Write />:<Login></Login>} />
       <Route path="/about" element={<About></About>} />
       <Route path="/Contact" element={<Contact></Contact>} />
+      <Route path="/profilesetting" element={<UserSetting></UserSetting>} />
       <Route path="/post/:postId" element={<SingleBlog></SingleBlog>}>
   
       </Route>
